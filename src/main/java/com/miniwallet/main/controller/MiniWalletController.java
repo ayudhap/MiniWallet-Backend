@@ -48,7 +48,7 @@ public class MiniWalletController {
 	@GetMapping("/viewWallet")
 	private ResponseEntity<String> viewWallet(@RequestHeader(name = "Authorization") String authorization) throws IOException {
 		OkHttpClient client = new OkHttpClient().newBuilder().build();
-		Request request = new Request.Builder().url("http://localhost:8082/api/v1/wallet").method("GET", null)
+		Request request = new Request.Builder().url("http://localhost:8080/api/v1/wallet").method("GET", null)
 				.addHeader("Authorization", authorization).build();
 		Response response = client.newCall(request).execute();
 		return ResponseEntity.status(HttpStatus.CREATED).contentType(org.springframework.http.MediaType.APPLICATION_JSON)
@@ -62,7 +62,7 @@ public class MiniWalletController {
 		MediaType mediaType = MediaType.parse("text/plain");
 		RequestBody body = new MultipartBody.Builder().setType(MultipartBody.FORM).addFormDataPart("amount", amount)
 				.addFormDataPart("reference_id", reference_id).build();
-		Request request = new Request.Builder().url("http://localhost:8082/api/v1/wallet/deposits").method("POST", body)
+		Request request = new Request.Builder().url("http://localhost:8080/api/v1/wallet/deposits").method("POST", body)
 				.addHeader("Authorization", authorization).build();
 		Response response = client.newCall(request).execute();
 		return ResponseEntity.status(HttpStatus.CREATED).contentType(org.springframework.http.MediaType.APPLICATION_JSON)
@@ -77,7 +77,7 @@ public class MiniWalletController {
 		MediaType mediaType = MediaType.parse("text/plain");
 		RequestBody body = new MultipartBody.Builder().setType(MultipartBody.FORM).addFormDataPart("amount", amount)
 				.addFormDataPart("reference_id", reference_id).build();
-		Request request = new Request.Builder().url("http://localhost:8082/api/v1/wallet/withdrawals").method("POST", body)
+		Request request = new Request.Builder().url("http://localhost:8080/api/v1/wallet/withdrawals").method("POST", body)
 				.addHeader("Authorization", authorization).build();
 		Response response = client.newCall(request).execute();
 		return ResponseEntity.status(HttpStatus.CREATED).contentType(org.springframework.http.MediaType.APPLICATION_JSON)
@@ -90,7 +90,7 @@ public class MiniWalletController {
 		MediaType mediaType = MediaType.parse("text/plain");
 		RequestBody body = new MultipartBody.Builder().setType(MultipartBody.FORM)
 				.addFormDataPart("is_disabled", is_disabled).build();
-		Request request = new Request.Builder().url("http://localhost:8082/api/v1/wallet").method("PATCH", body)
+		Request request = new Request.Builder().url("http://localhost:8080/api/v1/wallet").method("PATCH", body)
 				.addHeader("Authorization", authorization).build();
 		Response response = client.newCall(request).execute();
 		return ResponseEntity.status(HttpStatus.CREATED).contentType(org.springframework.http.MediaType.APPLICATION_JSON)
